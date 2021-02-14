@@ -1,0 +1,192 @@
+{% extends 'basic_concepts/base.html' %}
+{% load static %}
+
+{% block title%}
+<title>Hash functions</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'basic_concepts/hash_functions.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+{% include 'basic_concepts/navigation/navigation.html' %}
+
+<div style="min-height:100vh; display:flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="container">
+
+        <form id="message_form">
+            {% csrf_token %}
+            <input style="display:none;" id="input_algorithm" name="algorithm">
+            <div style="box-shadow: 0px 0px 20px black; width:100%;">
+                <input id="input_message" name="message" placeholder="Enter your message..." autocomplete="off">
+            </div>
+        </form>
+
+
+        <!-- Button trigger modal -->
+        <button id="select_hashing_algorithm" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Select your hash function...
+        </button>
+        <small style="padding:.375rem .75rem; color: #ffffff;">Currently : <span id="hashing_algorithm_selected">sha256</span></small>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <small id="exampleModalLabel">Hash functions</small>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                
+
+                    <div style="display:flex; flex-wrap:wrap; gap: 12px; margin-top:25px;">
+                        {% for algorithm in algorithms %}
+                            <div class="algorithm_container" id="{{algorithm}}" onclick="selectAlgorithm(this.id)">
+                                    <small style="color:gray; white-space:nowrap;">{{algorithm}}</small>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 45px;">
+            <div class="format_trigger selected" id="hexadecimal" onClick="format_select(this.id)">Hexadecimal</div>
+            <div class="format_trigger" id="decimal" onClick="format_select(this.id)">Decimal</div>
+            <div class="format_trigger" id="binary" onClick="format_select(this.id)">Binary</div>
+        </div>        
+        
+        <div id="hash_value_container" style="width:100%; word-wrap:break-word; margin-top:50px;">
+            {% if message != '' %}
+                {% include 'basic_concepts/ajax_hash_functions.html' %}
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+<script>
+    function format_select(selected_id){
+        let formats = document.getElementsByClassName('format_trigger');
+        for (let i = 0; i < formats.length; i++) {
+            if (formats[i].id === selected_id){
+                formats[i].classList.add("selected");
+                document.getElementById(selected_id + '_container').style.display = 'flex';
+            }else{
+                formats[i].classList.remove("selected");
+                document.getElementById(formats[i].id + '_container').style.display = 'none';
+            }
+        }
+    };
+</script>
+
+
+{{ algorithms|json_script:"algorithms" }}
+<script type="text/javascript">
+
+    document.getElementById("input_algorithm").value = "sha256";
+    document.getElementById("sha256").classList.add("selected");
+    document.getElementById("input_message").focus();
+
+    
+
+
+
+    function selectAlgorithm(algorithm_id) {
+        document.getElementById("input_algorithm").value = algorithm_id;
+        let algorithmsArray = JSON.parse(document.getElementById('algorithms').textContent);
+        let arrayLength = algorithmsArray.length;
+        for (let i = 0; i < arrayLength; i++) {
+            if(algorithmsArray[i] == algorithm_id){
+                document.getElementById(algorithmsArray[i]).classList.remove("unselected");
+                document.getElementById(algorithmsArray[i]).classList.add("selected");
+
+                document.getElementById('hashing_algorithm_selected').innerText = algorithmsArray[i];
+                
+                
+            }else{
+                document.getElementById(algorithmsArray[i]).classList.remove("selected");
+                document.getElementById(algorithmsArray[i]).classList.add("unselected");
+            }
+        }
+
+        let serializedData = $("#message_form").serialize()
+        // create an AJAX call
+        $.ajax({
+            url: "{% url 'ajax_hash_functions' %}",
+            data: serializedData, // get the form data
+            type: 'post',
+            // on success
+            success: function (data) {
+                $('#hash_value_container').html(data);
+
+
+                let formats = document.getElementsByClassName('format_trigger');
+    for (let i = 0; i < formats.length; i++) {
+        if (formats[i].classList.contains('selected')){
+            document.getElementById(formats[i].id + '_container').style.display = 'flex';
+        }else{
+            document.getElementById(formats[i].id + '_container').style.display = 'none';
+        }
+    }
+
+
+            },
+            // on error
+            error: function (data) {
+                // alert the error if any error occured
+            }
+        });
+        
+        
+    }
+</script>
+
+<script>
+    $('#input_message').keyup(function () {
+        let serializedData = $("#message_form").serialize()
+        // create an AJAX call
+        $.ajax({
+            url: "{% url 'ajax_hash_functions' %}",
+            data: serializedData, // get the form data
+            type: 'post',
+            // on success
+            success: function (data) {
+                $('#hash_value_container').html(data);
+
+
+                let formats = document.getElementsByClassName('format_trigger');
+    for (let i = 0; i < formats.length; i++) {
+        if (formats[i].classList.contains('selected')){
+            document.getElementById(formats[i].id + '_container').style.display = 'flex';
+        }else{
+            document.getElementById(formats[i].id + '_container').style.display = 'none';
+        }
+    }
+
+
+            },
+            // on error
+            error: function (data) {
+                // alert the error if any error occured
+            }
+        });
+    });
+</script>
+{% endblock %}
