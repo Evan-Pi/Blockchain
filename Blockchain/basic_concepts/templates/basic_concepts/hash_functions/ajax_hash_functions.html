@@ -1,0 +1,24 @@
+<div id="hexadecimal_container" class="format_container">
+    {% if message %}
+        <h5 style="color:gray;">Hash value :</h5>
+        <h4 style="color: #03A062; text-shadow: 0px 0px 20px #03A062;">{{hash_value}}</h4>
+    {% endif %}
+</div>
+
+<div id="decimal_container" class="format_container">
+    {% if message %}
+        <h5 style="color:gray;">Hash value :</h5>
+        <h4 style="color: #03A062; text-shadow: 0px 0px 20px #03A062;">{{hex_as_int}}</h4>
+    {% endif %}
+</div>
+
+<div id="binary_container" class="format_container">
+    {% if message %}
+        <h5 style="color:gray;">Hash value: </h5>
+        <h4 style="color: #03A062; text-shadow: 0px 0px 20px #03A062;">{{hex_as_binary}}</h4>
+    {% endif %}
+</div>
+
+
+
+

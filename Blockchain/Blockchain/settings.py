@@ -39,9 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'basic_concepts.apps.BasicConceptsConfig',
-    'livereload',
-    
+    'basic_concepts.apps.BasicConceptsConfig',    
 ]
 
 MIDDLEWARE = [

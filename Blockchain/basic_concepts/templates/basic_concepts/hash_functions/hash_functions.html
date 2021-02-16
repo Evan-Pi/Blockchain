@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'basic_concepts/hash_functions.css' %}">
+    <link rel="stylesheet" href="{% static 'basic_concepts/css/hash_functions.css' %}">
 {% endblock %}
 
 
@@ -28,7 +28,7 @@
 
         <!-- Button trigger modal -->
         <button id="select_hashing_algorithm" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Select your hash function...
+            Select hash function...
         </button>
         <small style="padding:.375rem .75rem; color: #ffffff;">Currently : <span id="hashing_algorithm_selected">sha256</span></small>
         
@@ -65,9 +65,7 @@
         </div>        
         
         <div id="hash_value_container" style="width:100%; word-wrap:break-word; margin-top:50px;">
-            {% if message != '' %}
-                {% include 'basic_concepts/ajax_hash_functions.html' %}
-            {% endif %}
+                {% include 'basic_concepts/hash_functions/ajax_hash_functions.html' %}
         </div>
         
     </div>
