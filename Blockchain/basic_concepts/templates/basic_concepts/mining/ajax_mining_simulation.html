@@ -1,0 +1,36 @@
+{% load static %}
+
+{% if time_limit >= 15 %}
+<div id="time_limit_exceeded" class="text-center">
+    <h5>Time limit excedeed!</h5>
+    <small>Please try again, perhaps with a lower number of leading zeros...</small>
+    <i style="margin-top: 15px;" class="fas fa-heart-broken fa-2x"></i>
+</div>
+{% else %}
+<div id="results">
+    <div id="results_inner">
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Message</th>
+                <th scope="col">Leading zeros (difficulty)</th>
+                <th scope="col">Hash value</th>
+                <th scope="col">Nonce</th>
+                <th scope="col">Time elapsed (sec)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>{{message}}</td>
+                <td>{{leading_zeros}}</td>
+                <td>{{hash_value}}</td>
+                <td>{{nonce}}</td>
+                <td>{{time_elapsed}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h6 style="color: silver; width: 100%; text-align: end; margin-top: 15px; font-size: 11.5px;">Hash algorithm used : SHA256</h6>    
+</div>
+{% endif %}
+

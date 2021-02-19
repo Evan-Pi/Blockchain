@@ -1,0 +1,87 @@
+{% extends 'basic_concepts/base.html' %}
+{% load static %}
+{% load basic_concepts %}
+
+{% block title%}
+<title>Mining Simulation</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'basic_concepts/css/mining_simulation.css' %}">
+{% endblock %}
+
+
+{% block main %}
+{% include 'basic_concepts/navigation/navigation.html' %}
+
+    <div id="loading_wrapper">
+        <div id="loading" style="background-image: url({% static 'basic_concepts/material/loading.gif' %});">
+        </div>
+        <small>mining in progress...</small>
+    </div>
+
+    <form id="message_form">
+        {% csrf_token %}
+        <input id="input_message" name="message" placeholder="Insert your message..." autocomplete="off" required>
+        <input id="input_leading_zeros" min="0" max="7" name="leading_zeros" type="number" placeholder="Insert leading zeros..." autocomplete="off" required>
+
+    
+
+        <input type="submit" id="submit_message_form" value="START MINING">
+    </form>
+
+    
+
+
+    <div id="mining_container" class="container" style="margin-top: 30px;">
+        
+    </div>
+
+    <div id="restart">
+        <span>RESTART</span>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+
+
+    $('#restart').click( function(){
+        $('#message_form')[0].reset();
+        $(this).hide();
+        $('#results').hide();
+        $('#time_limit_exceeded').hide();
+        $('#message_form').fadeIn();
+        $('#submit_message_form').fadeIn();
+    });
+
+    $('#message_form').submit(function (e) {
+        e.preventDefault();
+        $('#loading_wrapper').css({'display':'flex'}).fadeIn(1000);
+        $('#message_form , #submit_message_form').hide();
+        //$('#results').hide();
+        
+        let serializedData = $("#message_form").serialize()
+        // create an AJAX call
+        $.ajax({
+            url: "{% url 'ajax_mining_simulation' %}",
+            data: serializedData, // get the form data
+            type: 'post',
+            // on success
+            success: function (data) {
+                $('#mining_container').html(data); 
+                $('#loading_wrapper').hide(); 
+                $('#restart').css({'display':'flex'}).fadeIn(2000);
+            },
+            // on error
+            error: function (data) {
+                // alert the error if any error occured
+                $('#loading_wrapper').hide(); 
+                $('#restart').css({'display':'flex'}).fadeIn(2000);
+            }
+        });
+    });
+</script>
+{% endblock %}

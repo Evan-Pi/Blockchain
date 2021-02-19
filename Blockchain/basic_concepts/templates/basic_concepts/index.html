@@ -1,0 +1,27 @@
+{% extends 'basic_concepts/base.html' %}
+{% load static %}
+{% load basic_concepts %}
+
+{% block title%}
+<title>Blockchain - Basic Concepts</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'basic_concepts/css/index.css' %}">
+{% endblock %}
+
+
+{% block main %}
+{% include 'basic_concepts/navigation/navigation.html' %}
+
+<h1>BLOCKCHAIN</h1>
+<h6 style="letter-spacing: 0.7px;">Core concepts implementation</h6>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
+
+

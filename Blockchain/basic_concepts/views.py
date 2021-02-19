@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 import hashlib
+import time
+
+def index(request):
+    context={}
+    return render(request, 'basic_concepts/index.html', context)
 
 def hash_functions(request):
 
@@ -69,4 +74,43 @@ def ajax_merkle_trees(request):
         }
     return render(request, 'basic_concepts/merkle_trees/ajax_merkle_trees.html', context)
 
+
+
+def mining_simulation(request):
+    return render(request, 'basic_concepts/mining/mining_simulation.html')
+
+def ajax_mining_simulation(request):
+
+    message = request.POST['message']
+    leading_zeros = int(request.POST['leading_zeros'])
+    
+
+    nonce = -1
+    cpn = f'{message}{str(nonce)}'.encode('utf-8') # Content plus nonce
+    hash_value = hashlib.sha256(cpn).hexdigest()
+
+    start = time.time()
+    while hash_value[:leading_zeros] != str(0)*leading_zeros:
+        nonce+=1
+        cpn = f'{message}{str(nonce)}'.encode('utf-8')
+        hash_value = hashlib.sha256(cpn).hexdigest()
+
+        time_limit = time.time() - start
+        if time_limit > 15:
+            break
+    end = time.time()
+
+    time_elapsed = str(end-start)
+
+    context={
+        'message':message, 
+        'leading_zeros':leading_zeros,
+        'nonce':nonce, 
+        'time_elapsed':time_elapsed,
+        'hash_value':hash_value,
+        'time_limit':time_limit
+    }
+
+            
+    return render(request, 'basic_concepts/mining/ajax_mining_simulation.html' , context)
     

@@ -102,10 +102,6 @@
     document.getElementById("sha256").classList.add("selected");
     document.getElementById("input_message").focus();
 
-    
-
-
-
     function selectAlgorithm(algorithm_id) {
         document.getElementById("input_algorithm").value = algorithm_id;
         let algorithmsArray = JSON.parse(document.getElementById('algorithms').textContent);
@@ -114,10 +110,7 @@
             if(algorithmsArray[i] == algorithm_id){
                 document.getElementById(algorithmsArray[i]).classList.remove("unselected");
                 document.getElementById(algorithmsArray[i]).classList.add("selected");
-
                 document.getElementById('hashing_algorithm_selected').innerText = algorithmsArray[i];
-                
-                
             }else{
                 document.getElementById(algorithmsArray[i]).classList.remove("selected");
                 document.getElementById(algorithmsArray[i]).classList.add("unselected");
@@ -133,26 +126,20 @@
             // on success
             success: function (data) {
                 $('#hash_value_container').html(data);
-
-
                 let formats = document.getElementsByClassName('format_trigger');
-    for (let i = 0; i < formats.length; i++) {
-        if (formats[i].classList.contains('selected')){
-            document.getElementById(formats[i].id + '_container').style.display = 'flex';
-        }else{
-            document.getElementById(formats[i].id + '_container').style.display = 'none';
-        }
-    }
-
-
+                for (let i = 0; i < formats.length; i++) {
+                    if (formats[i].classList.contains('selected')){
+                        document.getElementById(formats[i].id + '_container').style.display = 'flex';
+                    }else{
+                        document.getElementById(formats[i].id + '_container').style.display = 'none';
+                    }
+                }
             },
             // on error
             error: function (data) {
                 // alert the error if any error occured
             }
         });
-        
-        
     }
 </script>
 
@@ -167,18 +154,14 @@
             // on success
             success: function (data) {
                 $('#hash_value_container').html(data);
-
-
                 let formats = document.getElementsByClassName('format_trigger');
-    for (let i = 0; i < formats.length; i++) {
-        if (formats[i].classList.contains('selected')){
-            document.getElementById(formats[i].id + '_container').style.display = 'flex';
-        }else{
-            document.getElementById(formats[i].id + '_container').style.display = 'none';
-        }
-    }
-
-
+                for (let i = 0; i < formats.length; i++) {
+                    if (formats[i].classList.contains('selected')){
+                        document.getElementById(formats[i].id + '_container').style.display = 'flex';
+                    }else{
+                        document.getElementById(formats[i].id + '_container').style.display = 'none';
+                    }
+                }
             },
             // on error
             error: function (data) {

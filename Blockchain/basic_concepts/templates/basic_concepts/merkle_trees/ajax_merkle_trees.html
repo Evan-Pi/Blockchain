@@ -5,7 +5,7 @@
     <div class="hash_block" style="justify-content: center; align-items: center;">
         <span style="color: #ffffff; font-size: 17.2px;">TOP HASH (H1234)</span>
         <small style="color: silver; font-size: 12.5px;">Hash value of blocks H12 & H34:</small><br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{% top_hash  data_block_1|sha256 data_block_2|sha256 data_block_3|sha256 data_block_4|sha256 %}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{% top_hash  data_block_1|sha256 data_block_2|sha256 data_block_3|sha256 data_block_4|sha256 %}</small>
     </div>
 </div>
 
@@ -17,7 +17,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of H1 & H2:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{% join_and_hash  data_block_1|sha256 data_block_2|sha256 %}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{% join_and_hash  data_block_1|sha256 data_block_2|sha256 %}</small>
     </div>
     <div class="hash_block">
         <div style="display: flex; flex-direction: column;">
@@ -25,7 +25,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of H3 & H4:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{% join_and_hash  data_block_3|sha256 data_block_4|sha256 %}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{% join_and_hash  data_block_3|sha256 data_block_4|sha256 %}</small>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of leaf node 1:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{{data_block_1|sha256|safe}}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{{data_block_1|sha256|safe}}</small>
     </div>
     <div class="hash_block">
         <div style="display: flex; flex-direction: column;">
@@ -45,7 +45,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of leaf node 2:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{{data_block_2|sha256|safe}}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{{data_block_2|sha256|safe}}</small>
     </div>
     <div class="hash_block">
         <div style="display: flex; flex-direction: column;">
@@ -53,7 +53,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of leaf node 3:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{{data_block_3|sha256|safe}}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{{data_block_3|sha256|safe}}</small>
     </div>
     <div class="hash_block">
         <div style="display: flex; flex-direction: column;">
@@ -61,7 +61,7 @@
             <small style="color: silver; font-size: 12.5px;">Hash value of leaf node 4:</small>
         </div>
         <br>
-        <small style="color: #03A062; text-shadow: 0px 0px 20px #03A062; font-size: 15.6px; ">{{data_block_4|sha256|safe}}</small>
+        <small style="color:#ffffff; font-size: 15.6px; ">{{data_block_4|sha256|safe}}</small>
     </div>
 </div>
 
@@ -71,6 +71,7 @@
         <small style="font-size: 17.2px;">Leaf node 1</small>
         <small style="color: silver; font-size: 12.5px;">Length : {{data_block_1|length}}</small><br>
         <small>{{data_block_1}}</small>
+
     </div>
     <div class="data_block">
         <small style="font-size: 17.2px;">Leaf node 2</small>
@@ -89,3 +90,5 @@
         
     </div>
 </div>
+
+

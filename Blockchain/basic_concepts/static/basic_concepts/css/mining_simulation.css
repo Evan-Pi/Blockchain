@@ -1,0 +1,136 @@
+body{
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    background: #18191a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+#message_form{
+    margin-bottom:30px;
+    flex-direction: column;
+    display: flex;
+}
+
+#input_message{
+    width: 320px;
+    background:#18191a;
+    outline: none;
+    box-shadow: none;
+    border:none;
+    border-radius:26px;
+    color:#ffffff;
+    box-shadow: 0px 0px 10px black;
+    padding: 14px;
+    margin-bottom: 15px;
+
+}
+
+#input_leading_zeros{
+    width: 320px;
+    background:#18191a;
+    outline: none;
+    box-shadow: none;
+    border:none;
+    border-radius:26px;
+    color:#ffffff;
+    box-shadow: 0px 0px 10px black;
+    padding: 14px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.4s ease;
+}
+
+#input_message:focus , #input_leading_zeros:focus{
+    box-shadow: 0px 0px 10px #ffffff;
+}
+
+#submit_message_form{
+    height: 52px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26px;
+    box-shadow: 0px 0px 10px black;
+    transition: box-shadow 0.4s ease;
+    color: silver;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+#submit_message_form:hover{
+    box-shadow: 0px 0px 20px #ffffff;
+}
+
+#restart{
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px black;
+    transition: box-shadow 0.4s ease;
+    color: silver;
+    cursor: pointer;
+    display: none;
+    margin-top: 30px;
+}
+
+#restart:hover{
+    box-shadow: 0px 0px 20px #ffffff;
+}
+
+#results_inner{
+    overflow-x: auto;
+    max-width: 100vw;
+}
+
+table{
+    color: #ffffff !important;  
+}
+
+thead{
+    border-color: #ffffff;
+}
+
+tr{
+    border: none;
+}
+
+th{
+    white-space: nowrap;
+}
+
+#time_limit_exceeded{
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading_wrapper{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading{
+    box-shadow: 0px 0px 20px black;    
+    background-size:cover; 
+    background-position:center;
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    margin-bottom: 7.5px;
+}
+
