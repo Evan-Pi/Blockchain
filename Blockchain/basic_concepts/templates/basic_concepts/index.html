@@ -14,14 +14,19 @@
 {% block main %}
 {% include 'basic_concepts/navigation/navigation.html' %}
 
-<h1>BLOCKCHAIN</h1>
+<h1 style="font-size: 40px;">BLOCKCHAIN</h1>
 <h6 style="letter-spacing: 0.7px;">Core concepts implementation</h6>
 
 {% endblock %}
 
 
 {% block scripts %}
-
+<script>
+    $('#homepage_link').click( function(e) {
+        e.preventDefault();
+        return false; 
+    });
+</script>
 {% endblock %}
 
 

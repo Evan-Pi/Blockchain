@@ -37,6 +37,13 @@
 
 {% block scripts %}
 <script>
+    $('#merkle_trees_link').click( function(e) {
+        e.preventDefault(); 
+        return false; 
+    });
+</script>
+
+<script>
     $('#data_block_1_input , #data_block_2_input , #data_block_3_input , #data_block_4_input').keyup(function () {
         let serializedData = $("#message_form").serialize()
         // create an AJAX call

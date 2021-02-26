@@ -77,7 +77,12 @@
 
 
 {% block scripts %}
-
+<script>
+    $('#hash_functions_link').click( function(e) {
+        e.preventDefault();
+        return false; 
+    });
+</script>
 
 <script>
     function format_select(selected_id){

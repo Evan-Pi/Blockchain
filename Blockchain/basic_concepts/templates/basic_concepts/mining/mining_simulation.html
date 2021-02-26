@@ -46,6 +46,13 @@
 
 {% block scripts %}
 <script>
+    $('#mining_simulation_link').click( function(e) {
+        e.preventDefault();
+        return false; 
+    });
+</script>
+
+<script>
 
 
     $('#restart').click( function(){

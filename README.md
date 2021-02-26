@@ -1,2 +1,11 @@
 # Blockchain
-Implementations of basic Blockchain concepts
+Implementation of basic Blockchain concepts
+
+## Technology stack:
+
+Python
+Django
+HTML
+CSS
+Javascript
+JQuery
